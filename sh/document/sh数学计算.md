@@ -23,10 +23,11 @@
 - `expression`部分可以定义数学表达式
 - 这种方式执行简单的浮点数计算还较为容易，如果要执行多个表达式可以使用下面这种方式
 
-- `variable=$(bc << EOF 
+- ```
+   variable=$(bc << EOF 
    options 
    statements 
    expressions 
    EOF 
    ) 
-  `
+  ```
