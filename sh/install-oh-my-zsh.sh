@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 echo '开始从 github 下载 oh-my-zsh'
 git clone https://github.com.cnpmjs.org/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh && echo '下载 oh-my-zsh 完成'
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc && echo '创建 zshrc 成功'
