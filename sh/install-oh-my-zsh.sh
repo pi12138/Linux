@@ -16,6 +16,6 @@ echo 'plugins=(
 echo 'source $ZSH/oh-my-zsh.sh' >> ~/.zshrc
 
 echo '开始安装 oh-my-zsh'
-sudo apt install zsh && echo '安装 zsh 成功'
+sudo apt install zsh -y && echo '安装 zsh 成功'
 chsh -s /bin/zsh && echo '切换 zsh 为默认 shell'
 echo '请重新登录查看效果'
