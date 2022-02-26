@@ -1,5 +1,5 @@
-git clone https://github.com.cnpmjs.org/pyenv/pyenv.git ~/.pyenv && echo '下载 pyenv 成功'
-git clone https://github.com.cnpmjs.org/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv && echo '下载 pyenv 成功'
+git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 
 echo '\n# pyenv settings' >> ~/.zshrc
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
