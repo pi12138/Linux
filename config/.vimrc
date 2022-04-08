@@ -23,7 +23,7 @@ set paste
 set nocompatible
 
 set nu " 设置行号
-set mouse=a " 启用鼠标
+" set mouse=a " 启用鼠标
 set cursorline "突出显示当前行
 " set cursorcolumn " 突出显示当前列
 set showmatch " 显示括号匹配
