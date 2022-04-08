@@ -23,6 +23,7 @@ set paste
 set nocompatible
 
 set nu " 设置行号
+set mouse=a " 启用鼠标
 set cursorline "突出显示当前行
 " set cursorcolumn " 突出显示当前列
 set showmatch " 显示括号匹配
@@ -66,10 +67,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
 
 " 用来提供一个导航目录的侧边栏
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 
 " 可以使 nerdtree Tab 标签的名称更友好些
-Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'jistr/vim-nerdtree-tabs'
 
 " 可以在导航目录中看到 git 版本信息
 Plug 'Xuyuanp/nerdtree-git-plugin'
