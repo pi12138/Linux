@@ -1,5 +1,5 @@
 {
     "source_dir": "./",
     "target_dir": "root@10.1.9.3:~/projects/test",
-    "exclude_rules": [".git"]
+    "exclude_rules": [".git/", ".gitignore", "old"]
 }

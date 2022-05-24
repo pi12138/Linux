@@ -5,13 +5,14 @@
 """
 
 
+from dis import show_code
 import json
 import os
 import subprocess
 import sys
 
 
-RSYNC_FORMAT = 'rsync -avr --exclude={{{exclude}}} {source} {target}'
+RSYNC_FORMAT = 'rsync -avr --exclude="{exclude}" {source} {target}'
 
 
 class Config:
@@ -21,9 +22,10 @@ class Config:
 
 
 class Rsync:
-    def __init__(self, config, target_file):
+    def __init__(self, config, target_file, show_cmd=False):
         self.config = config
         self.target_file = target_file
+        self.show_cmd = show_cmd
 
     def run(self):
         source_file = f"{self.config.SOURCE_DIR.rstrip('/')}/{self.target_file}"
@@ -32,9 +34,11 @@ class Rsync:
         cmd = RSYNC_FORMAT.format(
             source=source_file,
             target=target_file,
-            exclude=self.config.EXCLUDE_RULES
+            exclude=str(set(self.config.EXCLUDE_RULES)),
         )
         print(f'rsync file: {self.target_file}')
+        if self.show_cmd:
+            print(cmd)
         status, output = subprocess.getstatusoutput(cmd)
         if status != 0:
             print(f'rsync error: {output}')
@@ -63,11 +67,13 @@ def get_config(config_file_path=None) -> Config:
 
 
 def main():
+    argv = sys.argv
+    show_cmd = '--show_cmd' in argv
     diff_file_list = get_diff_file_list()
     config = get_config()
 
     for file_name in diff_file_list:
-        rsync = Rsync(config, file_name)
+        rsync = Rsync(config, file_name, show_cmd=show_cmd)
         rsync.run()
 
 
