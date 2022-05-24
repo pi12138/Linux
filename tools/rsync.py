@@ -5,14 +5,10 @@
 """
 
 
-from dis import show_code
-from distutils.command.config import config
-from email.policy import default
 import json
 import os
 import subprocess
 import sys
-from unittest.mock import DEFAULT
 
 
 RSYNC_FORMAT = 'rsync -avr --exclude="{exclude}" {source_file} {target_host}:{target_file}'
