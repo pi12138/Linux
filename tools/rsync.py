@@ -6,19 +6,24 @@
 
 
 from dis import show_code
+from distutils.command.config import config
+from email.policy import default
 import json
 import os
 import subprocess
 import sys
+from unittest.mock import DEFAULT
 
 
-RSYNC_FORMAT = 'rsync -avr --exclude="{exclude}" {source} {target}'
+RSYNC_FORMAT = 'rsync -avr --exclude="{exclude}" {source_file} {target_host}:{target_file}'
 
 
 class Config:
     SOURCE_DIR = './'  # 源目录
     TARGET_DIR = ''  # 目标目录
-    EXCLUDE_RULES = ''  # 排除文件规则
+    EXCLUDE_RULES = []  # 排除文件规则
+    TARGET_HOST_LIST = []  # 目标主机列表
+    DEFAULT_TARGET_HOST = ''  # 默认目标主机
 
 
 class Rsync:
@@ -28,12 +33,14 @@ class Rsync:
         self.show_cmd = show_cmd
 
     def run(self):
+        target_host = self.config.DEFAULT_TARGET_HOST or self.config.TARGET_HOST_LIST[0]
         source_file = f"{self.config.SOURCE_DIR.rstrip('/')}/{self.target_file}"
         target_file = f"{self.config.TARGET_DIR.rstrip('/')}/{self.target_file}"
 
         cmd = RSYNC_FORMAT.format(
-            source=source_file,
-            target=target_file,
+            source_file=source_file,
+            target_host=target_host,
+            target_file=target_file,
             exclude=str(set(self.config.EXCLUDE_RULES)),
         )
         print(f'rsync file: {self.target_file}')

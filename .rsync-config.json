@@ -1,5 +1,9 @@
 {
     "source_dir": "./",
-    "target_dir": "root@10.1.9.3:~/projects/test",
-    "exclude_rules": [".git/", ".gitignore", "old"]
+    "target_dir": "~/projects/test",
+    "exclude_rules": [".git/", ".gitignore", "old"],
+    "target_host_list": [
+        "root@10.1.9.3"
+    ],
+    "default_target_host": "root@10.1.9.3"
 }
