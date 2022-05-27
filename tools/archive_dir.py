@@ -36,7 +36,7 @@ def move_file(date_to_filename_list):
     for date, filename_list in date_to_filename_list.items():
         for filename in filename_list:
             cmd_list.append(
-                f'mv {filename} {date}/'
+                f'mv "{filename}" "{date}/"'
             )
 
     for cmd in cmd_list:
