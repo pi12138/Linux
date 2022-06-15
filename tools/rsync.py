@@ -79,10 +79,21 @@ def get_config(config_file_path=None) -> Config:
 def main():
     argv = sys.argv
     show_cmd = '--show_cmd' in argv
+    add_files = []
+    for arg in argv:
+        if arg.startswith('--add_files='):
+            add_files_str = arg.split('=')[1]
+            add_files.extend(add_files_str.split(','))
+    
     diff_file_list = get_diff_file_list()
     config = get_config()
-
-    for file_name in diff_file_list:
+    all_sync_files = diff_file_list + add_files
+    all_sync_files.sort()
+    print(f'rsync files: ')
+    for file_name in all_sync_files:
+        print(f'\t{file_name}')
+    
+    for file_name in all_sync_files:
         rsync = Rsync(config, file_name, show_cmd=show_cmd)
         rsync.run()
 

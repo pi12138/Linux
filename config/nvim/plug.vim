@@ -51,5 +51,16 @@ Plug '~/my-prototype-plugin'
 
 " NERDTree文件树
 Plug 'scrooloose/nerdtree'
+" if has('nvim')
+"   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Defx git
+"   Plug 'kristijanhusak/defx-git'
+"   Plug 'kristijanhusak/defx-icons'
+" else
+"   Plug 'Shougo/defx.nvim'
+"  Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
 
 call plug#end()
