@@ -19,6 +19,7 @@ def request_url(method, url):
 
 
 def handle_response(response: requests.Response):
+    print(f'响应时间: {response.elapsed.total_seconds()}')
     print(f'状态码: {response.status_code}')
     print(f'响应头:\n{json.dumps(dict(response.headers), indent=4)}')
     try:
@@ -26,6 +27,7 @@ def handle_response(response: requests.Response):
     except json.JSONDecodeError:
         body = response.text
     print(f'响应体:\n{body}')
+    return response
 
 
 def main():
