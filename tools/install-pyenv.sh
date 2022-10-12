@@ -20,7 +20,8 @@ echo $pyenv_virtualenv_home
 git clone $pyenv_home ~/.pyenv && echo '下载 pyenv 成功'
 git clone $pyenv_virtualenv_home ~/.pyenv/plugins/pyenv-virtualenv
 
-echo '\n# pyenv settings' >> ~/.zshrc
+echo >> ~/.zshrc
+echo '# pyenv settings' >> ~/.zshrc
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
