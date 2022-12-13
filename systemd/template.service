@@ -1,0 +1,12 @@
+[Unit]
+Description=服务描述
+After=network.target remote-fs.target nss-lookup.target
+ 
+[Service]
+Type=simple
+ExecStart=启动命令
+ExecStop=终止命令
+ExecReload=重启命令
+ 
+[Install]
+WantedBy=multi-user.target
