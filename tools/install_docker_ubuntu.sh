@@ -19,5 +19,11 @@ curl -fsSL get.docker.com -o get-docker.sh
 
 systemctl enable docker
 systemctl start docker
-groupadd docker
+
+if getent group docker > /dev/null; then
+    echo "docker group exist"
+else 
+    groupadd docker
+fi
+
 usermod -aG docker $install_user
