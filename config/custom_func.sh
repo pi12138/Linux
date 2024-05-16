@@ -25,7 +25,7 @@ function clash_open() {
     echo "clash 已经启动. pid: $pid"
 }
 
-funcation clash_pid() {
+function clash_pid() {
 	if [ -e $CLASH_PID_PATH ]; then
 		echo "从 $CLASH_PID_PATH 中获取 pid"
 		pid=$(cat $CLASH_PID_PATH)
