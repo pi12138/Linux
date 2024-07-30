@@ -7,3 +7,13 @@
 ## 设置密码
 
 - `passwd username` 为 username 这个用户设置密码，接下来需要输入两次密码
+
+## 批量设置用户密码
+
+- `echo 用户名:密码 | chpasswd`
+- `chpasswd < password.txt`
+- `password.txt` 文件内容格式应该为 `用户名:密码`
+
+## 删除用户
+
+- `userdel -r username` 删除一个用户且,删除其 Home 目录
