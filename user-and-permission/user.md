@@ -17,3 +17,12 @@
 ## 删除用户
 
 - `userdel -r username` 删除一个用户且,删除其 Home 目录
+
+## 添加用户到组
+
+- `usermod -aG sudo {username}` 添加用户到 `sudo` 组
+- centos 的 sudo 组名叫 wheel
+
+## 查看当前用户所处组
+
+- `groups {username}`
