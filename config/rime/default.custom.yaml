@@ -1,7 +1,8 @@
 patch:
   # 8 个候选词
-  "menu/page_size": 8
+  "menu/page_size": 9
   # 載入朙月拼音擴充詞庫
+  horizontal: true
   "translator/dictionary": luna_pinyin_simp.extended
   # 改寫拼寫運算，使得含西文的詞彙（位於 luna_pinyin_simp.cn_en.dict.yaml 中）不影響簡拼功能（注意，此功能只適用於朙月拼音系列方案，不適用於各類雙拼方案）
   # 本條補靪只在「小狼毫 0.9.30」、「鼠鬚管 0.9.25 」、「Rime-1.2」及更高的版本中起作用。
@@ -15,5 +16,5 @@ patch:
     Control_L: noop
     Control_R: noop
     Eisu_toggle: clear
-    Shift_L: noop
+    Shift_L: commit_text
     Shift_R: commit_text
