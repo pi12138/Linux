@@ -1,0 +1,17 @@
+theme = "onedark"
+
+[editor]
+mouse = false
+cursorline = true
+cursorcolumn = true
+bufferline = "always"
+
+[editor.statusline]
+separator = ">"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+left = ["mode", "version-control", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+
+[editor.cursor-shape]
+select = "underline"
