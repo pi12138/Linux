@@ -33,6 +33,8 @@ display-inlay-hints = true
 "A-S-left" = "jump_backward"
 "C-p" = "file_picker_in_current_directory"
 "C-b" = "buffer_picker"
+"C-f" = "search"
+
 
 [keys.insert]
 "A-S-down" = "goto_definition"
@@ -40,3 +42,4 @@ display-inlay-hints = true
 "A-S-left" = "jump_backward"
 "C-p" = "file_picker_in_current_directory"
 "C-b" = "buffer_picker"
+"C-f" = "search"
