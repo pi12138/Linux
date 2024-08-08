@@ -21,7 +21,7 @@ bindings = [
 # { key = "T", mods = "Control|Shift", action = "CreateNewTab" }
 { key = "N", mods = "Control|Alt", action = "SpawnNewInstance" },
 { key = "F11", action = "ToggleFullscreen" },
-{ key = "W", mods = "Control", action = "Quit" }
+{ key = "W", mods = "Control|Shift", action = "Quit" }
 ]
 
 # CreateNewWindow 和 SpawnNewInstance 是有区别的
