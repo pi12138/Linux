@@ -26,6 +26,8 @@ right = ["selections", "register", "position", "file-encoding", "file-type"]
 display-messages = true
 display-inlay-hints = true
 
+[editor.whitespace]
+render = "all"
 
 [keys.normal]
 "A-S-down" = "goto_definition"
@@ -50,3 +52,4 @@ display-inlay-hints = true
 "C-j" = "jumplist_picker"
 "C-z" = "undo"
 "C-S-z" = "redo"
+# "C-v" = "paste_after"
