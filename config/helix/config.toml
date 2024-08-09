@@ -48,3 +48,5 @@ display-inlay-hints = true
 "A-left" = "goto_previous_buffer"
 "A-right" = "goto_next_buffer"
 "C-j" = "jumplist_picker"
+"C-z" = "undo"
+"C-S-z" = "redo"
