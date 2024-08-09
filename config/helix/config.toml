@@ -36,6 +36,7 @@ display-inlay-hints = true
 "C-f" = "search"
 "A-left" = "goto_previous_buffer"
 "A-right" = "goto_next_buffer"
+"C-j" = "jumplist_picker"
  
 [keys.insert]
 "A-S-down" = "goto_definition"
@@ -46,3 +47,4 @@ display-inlay-hints = true
 "C-f" = "search"
 "A-left" = "goto_previous_buffer"
 "A-right" = "goto_next_buffer"
+"C-j" = "jumplist_picker"
