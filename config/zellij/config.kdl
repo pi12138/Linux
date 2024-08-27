@@ -158,8 +158,8 @@ keybinds clear-defaults=true {
         bind "F8" { Quit; }
         bind "Alt n" { NewPane; }
         bind "Alt t" { NewTab; }
-        bind "Alt i" { MoveTab "Left"; }
-        bind "Alt o" { MoveTab "Right"; }
+        // bind "Alt i" { MoveTab "Left"; }
+        // bind "Alt o" { MoveTab "Right"; }
         bind "Alt h" { MoveFocusOrTab "Left"; }
         bind "Alt l" { MoveFocusOrTab "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
