@@ -44,6 +44,8 @@ render = "all"
 "C-left" = "move_prev_word_start"
 F12 = "hover"
 "S-F12" = "goto_reference"
+"C-s" = ":w"
+"C-q" = ":bc"
  
 [keys.insert]
 "A-S-down" = "goto_definition"
@@ -63,3 +65,4 @@ F12 = "hover"
 F12 = "hover"
 "S-F12" = "goto_reference"
 "F2" = "rename_symbol"
+"C-s" = ["normal_mode", ":w"]
