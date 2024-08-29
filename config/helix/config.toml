@@ -24,7 +24,8 @@ right = ["selections", "register", "position", "file-encoding", "file-type"]
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
+# 是否显示变量类型
+# display-inlay-hints = true 
 
 [editor.whitespace]
 render = "all"
@@ -41,6 +42,7 @@ render = "all"
 "C-j" = "jumplist_picker"
 "C-right" = "move_next_word_start"
 "C-left" = "move_prev_word_start"
+F12 = "hover"
  
 [keys.insert]
 "A-S-down" = "goto_definition"
@@ -57,3 +59,4 @@ render = "all"
 # "C-v" = "paste_after"
 "C-right" = "move_next_word_start"
 "C-left" = "move_prev_word_start"
+F12 = "hover"
