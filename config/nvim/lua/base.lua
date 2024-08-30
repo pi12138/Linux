@@ -1,0 +1,48 @@
+-- vim.o.tabstop = 4
+-- vim.bo.tabstop = 4
+-- vim.o.softtabstop = 4
+-- vim.o.shiftround = true
+--  vim.o.expandtab = true
+vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
+vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.wo.cursorline = true
+-- vim.wo.signcolumn = "yes"
+
+-- 显示行数
+vim.o.number = true
+
+
+-- 不使用 vim 内部寄存器，打通剪切板
+vim.o.clipboard = 'unnamedplus'
+
+
+-- copy 高亮
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+	pattern = { "*" },
+	callback = function()
+		vim.highlight.on_yank({
+			timeout = 300,
+		})
+	end,
+})
+
+vim.cmd([[
+let g:clipboard = {
+  \   'name': 'osc-copy',
+  \   'copy': {
+  \      '+': 'osc copy -v -l /root/osc.log',
+  \      '*': 'osc copy -v -l /root/osc.log',
+  \    },
+  \   'paste': {
+  \      '+': 'osc paste -v -l /root/osc.log',
+  \      '*': 'osc paste -v -l /root/osc.log',
+  \   },
+  \   'cache_enabled': 0,
+  \ }
+]])
+
+--vim.cmd([[
+--set mouse=
+--]])
