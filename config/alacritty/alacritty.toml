@@ -1,5 +1,6 @@
 [font]
 normal = { family = "Fira Code", style = "Retina" }
+# normal = { family = "FiraCode Nerd Font" }
 size = 10
 
 [window]
