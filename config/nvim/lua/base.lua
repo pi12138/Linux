@@ -22,14 +22,17 @@ vim.g.mapleader = " "
 
 
 -- copy 高亮
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.highlight.on_yank({
-			timeout = 300,
-		})
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+--     pattern = { "*" },
+--     callback = function()
+--         vim.highlight.on_yank({
+--             timeout = 300,
+--         })
+--     end,
+-- })
+
+-- 关闭鼠标
+vim.o.mouse = ""
 
 --vim.cmd([[
 --let g:clipboard = {
@@ -45,7 +48,30 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 --  \   'cache_enabled': 0,
 --  \ }
 --]])
---
---vim.cmd([[
---set mouse=
---]])
+
+-- 剪切板配置
+function my_paste(reg)
+    return function(lines)
+
+        --[ 返回 "" 寄存器的内容，用来作为 p 操作符的粘贴物 ]
+        local content = vim.fn.getreg('"')
+        return vim.split(content, '\n')
+        
+    end
+end
+
+vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    -- paste = {
+    --    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    --    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    -- },
+    paste = {
+        ['+'] = my_paste('+'),
+        ['*'] = my_paste('*'),
+    },
+}
