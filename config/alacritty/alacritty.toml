@@ -27,3 +27,6 @@ bindings = [
 
 # CreateNewWindow 和 SpawnNewInstance 是有区别的
 # 前者的窗口属于同一个进程，后者是不同的进程
+
+# [terminal]
+# osc52 = "CopyPaste"
