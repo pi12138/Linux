@@ -31,10 +31,10 @@ vim.keymap.set("n", "<C-p>", teleBuilt.find_files, opt)
 
 
 -- 窗口操作相关
-vim.keymap.set("n", "<A-h>", "<C-w>h", opt)
-vim.keymap.set("n", "<A-l>", "<C-w>l", opt)
-vim.keymap.set("n", "<A-k>", "<C-w>k", opt)
-vim.keymap.set("n", "<A-j>", "<C-w>j", opt)
+-- vim.keymap.set("n", "<A-h>", "<C-w>h", opt)
+-- vim.keymap.set("n", "<A-l>", "<C-w>l", opt)
+-- vim.keymap.set("n", "<A-k>", "<C-w>k", opt)
+-- vim.keymap.set("n", "<A-j>", "<C-w>j", opt)
 
 
 -- 行操作
@@ -42,4 +42,5 @@ vim.keymap.set("n", "<A-j>", "<C-w>j", opt)
 -- vim.keymap.set("i", "<C-e>", "<C-o>$", opt)
 
 -- 通过 <Leader> + y 复制内容到系统剪切板
-vim.keymap.set("v", "<Leader>y", "")
+vim.keymap.set("v", "<Leader>y", '"+y', { noremap = true, silent = true , desc = '复制内容到 + 寄存器'})
+
