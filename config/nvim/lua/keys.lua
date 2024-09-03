@@ -17,13 +17,18 @@ vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<Enter>", opt)     -- 刷新文件�
 
 -- 文件操作相关
 vim.keymap.set("i", "<C-s>", "<ESC>:w<CR>", opt)
-vim.keymap.set("i", "<C-q>", "<ESC>:wq<Enter>", opt)
+vim.keymap.set("i", "<C-w>", "<ESC>:wq<Enter>", opt)
 vim.keymap.set("i", "<A-Left>", "<ESC>:BufferLineCyclePrev<Enter>", opt)
 vim.keymap.set("i", "<A-Right>", "<ESC>:BufferLineCycleNext<Enter>", opt)
 vim.keymap.set("n", "<C-s>", ":w<Enter>", opt)
 vim.keymap.set("n", "<C-q>", ":q<Enter>", opt)
 vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<Enter>", opt)
 vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<Enter>", opt)
+-- 搜索文件
+local teleBuilt = require("telescope.builtin")
+vim.keymap.set("i", "<C-p>", teleBuilt.find_files, opt)
+vim.keymap.set("n", "<C-p>", teleBuilt.find_files, opt)
+
 
 
 

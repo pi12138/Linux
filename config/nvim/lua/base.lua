@@ -15,7 +15,7 @@ vim.o.number = true
 
 
 -- 不使用 vim 内部寄存器，打通剪切板
-vim.o.clipboard = 'unnamedplus'
+-- vim.o.clipboard = 'unnamedplus'
 
 
 -- copy 高亮
@@ -28,21 +28,21 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	end,
 })
 
-vim.cmd([[
-let g:clipboard = {
-  \   'name': 'osc-copy',
-  \   'copy': {
-  \      '+': 'osc copy -v -l /root/osc.log',
-  \      '*': 'osc copy -v -l /root/osc.log',
-  \    },
-  \   'paste': {
-  \      '+': 'osc paste -v -l /root/osc.log',
-  \      '*': 'osc paste -v -l /root/osc.log',
-  \   },
-  \   'cache_enabled': 0,
-  \ }
-]])
-
+--vim.cmd([[
+--let g:clipboard = {
+--  \   'name': 'osc-copy',
+--  \   'copy': {
+--  \      '+': 'osc copy -v -l /root/osc.log',
+--  \      '*': 'osc copy -v -l /root/osc.log',
+--  \    },
+--  \   'paste': {
+--  \      '+': 'osc paste -v -l /root/osc.log',
+--  \      '*': 'osc paste -v -l /root/osc.log',
+--  \   },
+--  \   'cache_enabled': 0,
+--  \ }
+--]])
+--
 --vim.cmd([[
 --set mouse=
 --]])
