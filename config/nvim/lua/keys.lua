@@ -1,8 +1,5 @@
 -- 这个文件是快捷键设置
 
--- 设置 leader 键为空格
-vim.g.mapleader = " "
-
 -- keybindings
 local opt = { noremap = true, silent = true }
 vim.keymap.set("n", "<Leader>v", "<C-w>v", opt)
@@ -17,6 +14,7 @@ vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<Enter>", opt)     -- 刷新文件�
 
 -- 文件操作相关
 vim.keymap.set("i", "<C-s>", "<ESC>:w<CR>", opt)
+vim.keymap.set("i", "<C-q>", "<ESC>:wq<Enter>", opt)
 vim.keymap.set("i", "<C-w>", "<ESC>:wq<Enter>", opt)
 vim.keymap.set("i", "<A-Left>", "<ESC>:BufferLineCyclePrev<Enter>", opt)
 vim.keymap.set("i", "<A-Right>", "<ESC>:BufferLineCycleNext<Enter>", opt)

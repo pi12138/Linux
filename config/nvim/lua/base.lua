@@ -13,6 +13,9 @@ vim.wo.cursorline = true
 -- 显示行数
 vim.o.number = true
 
+-- 设置 leader 键为空格
+vim.g.mapleader = " "
+
 
 -- 不使用 vim 内部寄存器，打通剪切板
 -- vim.o.clipboard = 'unnamedplus'
