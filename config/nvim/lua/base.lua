@@ -34,6 +34,12 @@ vim.g.mapleader = " "
 -- 关闭鼠标
 vim.o.mouse = ""
 
+
+vim.opt.splitbelow = true -- open new vertical split bottom
+vim.opt.splitright = true -- open new horizontal splits right
+vim.opt.showmode = false -- we are experienced, wo don't need the "-- INSERT --" mode hint
+
+
 --vim.cmd([[
 --let g:clipboard = {
 --  \   'name': 'osc-copy',
@@ -55,8 +61,7 @@ function my_paste(reg)
 
         --[ 返回 "" 寄存器的内容，用来作为 p 操作符的粘贴物 ]
         local content = vim.fn.getreg('"')
-        return vim.split(content, '\n')
-        
+        return vim.split(content, '\n')        
     end
 end
 

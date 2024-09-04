@@ -12,6 +12,7 @@ lualine.setup({
 	},
 	extensions = { "nvim-tree", "toggleterm" },
 	sections = {
+
 		lualine_c = {
 			"filename",
 		},
@@ -28,6 +29,7 @@ lualine.setup({
 			"encoding",
 			"filetype",
 		},
+         -- lualine_z = {},
 	},
 })
 

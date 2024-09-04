@@ -44,3 +44,16 @@ vim.keymap.set("n", "<C-p>", teleBuilt.find_files, opt)
 -- 通过 <Leader> + y 复制内容到系统剪切板
 vim.keymap.set("v", "<Leader>y", '"+y', { noremap = true, silent = true , desc = '复制内容到 + 寄存器'})
 
+
+-- for lsp keymap
+function SetLSPKeyMap(bufnr)
+    local opts = { buffer = bufnr }
+    vim.keymap.set('n', '<F12>', vim.lsp.buf.definition, opts) -- F12                       转到定义
+    vim.keymap.set('n', '<F24>', vim.lsp.buf.references, opts) -- <F24> shift + F12         查看引用
+    vim.keymap.set('n', '<F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
+    vim.keymap.set('n', '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
+    vim.keymap.set('n', '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<Leader>c', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', '<A-F>', vim.lsp.buf.format, opts)
+end
