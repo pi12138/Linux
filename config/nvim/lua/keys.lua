@@ -5,12 +5,16 @@ local opt = { noremap = true, silent = true }
 vim.keymap.set("n", "<Leader>v", "<C-w>v", opt)
 
 
--- 文件浏览器相关
-vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<CR>", opt)        -- 开启/关闭文件夹浏览器
--- vim.keymap.set("n", "<A-b>", ":NvimTreeToggle<CR>", opt)         -- 光标移动到文件浏览器
-vim.keymap.set("n", "<A-f>", ":NvimTreeFindFile<CR>", opt)      -- 定位文件，光标移动到当前文件位置
-vim.keymap.set("i", "<A-p>", "<Esc>:NvimTreeFindFile<CR>", opt)
-vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<Enter>", opt)     -- 刷新文件树
+if rawget(package.loaded, "plugins-config.nvim-tree") then
+    -- 文件浏览器相关
+    vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<CR>", opt)        -- 开启/关闭文件夹浏览器
+    -- vim.keymap.set("n", "<A-b>", ":NvimTreeToggle<CR>", opt)         -- 光标移动到文件浏览器
+    vim.keymap.set("n", "<A-f>", ":NvimTreeFindFile<CR>", opt)      -- 定位文件，光标移动到当前文件位置
+    vim.keymap.set("i", "<A-p>", "<Esc>:NvimTreeFindFile<CR>", opt)
+    vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<Enter>", opt)     -- 刷新文件树
+else
+    vim.notify("没有开启 nvim-tree 不进行快捷键设置")
+end
 
 -- 文件操作相关
 vim.keymap.set("i", "<C-s>", "<ESC>:w<CR>", opt)
