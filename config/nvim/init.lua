@@ -16,6 +16,7 @@
 
 
 require("base")
+require("utils")
 require("lazy-vim")
 require("keys")
 require("plugins-config.nvim-tree")
