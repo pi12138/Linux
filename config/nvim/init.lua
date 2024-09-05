@@ -15,12 +15,14 @@
 --]]
 
 
+require("lazy-vim")
+require("plugins-config.telescope")
+require("plugins-config.folke")
 require("base")
 require("utils")
-require("lazy-vim")
 require("keys")
 -- require("plugins-config.nvim-tree")
-vim.opt.termguicolors = true
+require("plugins-config.nvim-treesitter")
 require("plugins-config.bufferline")
 require("plugins-config.lualine")
 require("plugins-config.cmp")

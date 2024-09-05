@@ -1,3 +1,7 @@
+-- 设置 leader 键为空格
+vim.g.mapleader = " "
+
+
 -- 使用 lazy.nvim 管理插件
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
