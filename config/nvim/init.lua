@@ -19,7 +19,7 @@ require("base")
 require("utils")
 require("lazy-vim")
 require("keys")
-require("plugins-config.nvim-tree")
+-- require("plugins-config.nvim-tree")
 vim.opt.termguicolors = true
 require("plugins-config.bufferline")
 require("plugins-config.lualine")

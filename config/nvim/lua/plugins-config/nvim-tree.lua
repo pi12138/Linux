@@ -13,6 +13,7 @@ if not status then
 	return
 end
 
+
 nvim_tree.setup({
     sort_by = "case_sensitive",
 	-- 是否显示 git 状态

@@ -74,3 +74,5 @@ function SetLSPKeyMap(bufnr)
     vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, opts)
     vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
 end
+
+

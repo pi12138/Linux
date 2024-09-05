@@ -65,6 +65,7 @@ function my_paste(reg)
     end
 end
 
+
 vim.g.clipboard = {
     name = 'OSC 52',
     copy = {
@@ -80,3 +81,10 @@ vim.g.clipboard = {
         ['*'] = my_paste('*'),
     },
 }
+
+
+-- 折叠代码块操作, zc, zo
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.wo.foldminlines =  100
+
