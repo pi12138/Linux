@@ -32,6 +32,7 @@ vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<Enter>", opt)
 local teleBuilt = require("telescope.builtin")
 vim.keymap.set("i", "<C-p>", teleBuilt.find_files, opt)
 vim.keymap.set("n", "<C-p>", teleBuilt.find_files, opt)
+vim.keymap.set('v', '<C-f>', teleBuilt.grep_string, opt)
 -- 全局搜索, 需要 ripgrep  支持
 if BinaryExists('rg') then
     vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
