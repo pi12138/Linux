@@ -22,5 +22,5 @@ require("plugins-config.nvim-tree")
 vim.opt.termguicolors = true
 require("plugins-config.bufferline")
 require("plugins-config.lualine")
-require("plugins-config.mason")
 require("plugins-config.cmp")
+require("plugins-config.mason")

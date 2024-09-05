@@ -37,9 +37,9 @@ end
 -- lua language server
 nvimLsp.lua_ls.setup {
   on_init = function(client)
+    print("into lua on_init")
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
-      vim.notify(":")
       return
     end
 
@@ -65,14 +65,21 @@ nvimLsp.lua_ls.setup {
     print("on init end")
   end,
   settings = {
-    Lua = {}
+    Lua = {
+        diagnostics = {
+            globals = { 'vim' },
+        }
+    }
   },
   on_attach = function(cli, bufnr)
     SetLSPKeyMap(bufnr)
     -- vim.notify("lua on_attach success.")
-    print("lua on_attach success.")
-  end
+    -- print("lua on_attach success.")
+  end,
+  capabilities = Capabilities,
 }
 
 -- golang language server
 nvimLsp.gopls.setup{}
+
+-- print("run this")
