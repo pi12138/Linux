@@ -1,4 +1,4 @@
--- 这个文件是快捷键设置
+
 
 -- keybindings
 local opt = { noremap = true, silent = true }
@@ -7,7 +7,7 @@ vim.keymap.set("n", "<Leader>v", "<C-w>v", opt)
 
 if rawget(package.loaded, "plugins-config.nvim-tree") then
     -- 文件浏览器相关
-    vim.keymap.set("n", "<C-b>", ":NvimTreeToggle<CR>", opt)        -- 开启/关闭文件夹浏览器
+
     -- vim.keymap.set("n", "<A-b>", ":NvimTreeToggle<CR>", opt)         -- 光标移动到文件浏览器
     vim.keymap.set("n", "<A-f>", ":NvimTreeFindFile<CR>", opt)      -- 定位文件，光标移动到当前文件位置
     vim.keymap.set("i", "<A-p>", "<Esc>:NvimTreeFindFile<CR>", opt)
@@ -25,7 +25,7 @@ vim.keymap.set("i", "<A-Right>", "<ESC>:BufferLineCycleNext<Enter>", opt)
 vim.keymap.set("n", "<C-s>", ":w<Enter>", opt)
 -- vim.keymap.set("n", "<C-q>", ":q<Enter>", opt)
 vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<Enter>", opt)
-vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<Enter>", opt)
+
 
 
 -- 搜索文件
@@ -80,4 +80,12 @@ function SetLSPKeyMap(bufnr)
     vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
 end
 
+-- which-key 管理快捷键
+local status, wk = pcall(require, "which-key")
+if  not status  then
+    vim.notify("which-key not install.")
+end
+
+wk.add({
+})
 
