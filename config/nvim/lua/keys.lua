@@ -29,15 +29,21 @@ vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<Enter>", opt)
 
 
 -- 搜索文件
-local teleBuilt = require("telescope.builtin")
-vim.keymap.set("i", "<C-p>", teleBuilt.find_files, opt)
-vim.keymap.set("n", "<C-p>", teleBuilt.find_files, opt)
-vim.keymap.set('v', '<C-f>', teleBuilt.grep_string, opt)
--- 全局搜索, 需要 ripgrep  支持
-if BinaryExists('rg') then
-    vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
+if  rawget(package.loaded, "plugins-config.telescope") then
+    local teleBuilt = require("telescope.builtin")
+    vim.keymap.set("i", "<C-p>", teleBuilt.find_files, opt)
+    vim.keymap.set("n", "<C-p>", teleBuilt.find_files, opt)
+    vim.keymap.set('v', '<C-f>', teleBuilt.grep_string, opt)
+    -- open file_browser with the path of the current buffer
+    vim.keymap.set("n", "<C-b>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+    -- 全局搜索, 需要 ripgrep  支持
+    if BinaryExists('rg') then
+        vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
+    else
+        vim.notify("rg  不存在,不设置快捷键  Ctrl +  f")
+    end
 else
-    vim.notify("rg  不存在,不设置快捷键  Ctrl +  f")
+    vim.notify("没有开启 telescope 不进行设置")
 end
 
 

@@ -36,4 +36,4 @@ tele.setup{
 }
 
 tele.load_extension('fzf')
-
+tele.load_extension('file_browser')
