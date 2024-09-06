@@ -1,5 +1,5 @@
--- 设置 leader 键为空格
-vim.g.mapleader = " "
+-- 设置 leader 键为空格, 会影响到在插入模式下输入空格会觉得卡顿,所以取消了
+-- vim.g.mapleader = " "
 
 
 -- 使用 lazy.nvim 管理插件
