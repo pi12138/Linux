@@ -82,7 +82,7 @@ function SetLSPKeyMap(bufnr)
     vim.keymap.set(mode, '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
     vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
     vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts)
-    vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, opts)
+--     vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, opts)
     vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
 end
 
@@ -94,4 +94,5 @@ end
 
 wk.add({
 })
+
 
