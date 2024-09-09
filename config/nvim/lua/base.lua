@@ -38,7 +38,7 @@ vim.opt.splitright = true -- open new horizontal splits right
 vim.opt.showmode = false -- we are experienced, wo don't need the "-- INSERT --" mode hint
 vim.opt.laststatus =  3 -- always and ONLY the last window
 -- 始终显示最左边的 siderbar (用来显示lsp诊断信息或者其他的),并且长度设置为 1 (默认值是 auto, 非常恶心会引起一行反复横跳在 normal 模式下)
-vim.opt.signcolumn =  'yes:2'
+vim.opt.signcolumn =  'yes:1'
 --vim.cmd([[
 --let g:clipboard = {
 --  \   'name': 'osc-copy',
@@ -56,7 +56,7 @@ vim.opt.signcolumn =  'yes:2'
 
 -- 剪切板配置
 function my_paste(reg)
-    return function(lines)
+    return function(lines) 
         --[ 返回 "" 寄存器的内容，用来作为 p 操作符的粘贴物 ]
         local content = vim.fn.getreg('"')
         return vim.split(content, '\n')        
