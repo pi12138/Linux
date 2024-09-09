@@ -85,5 +85,6 @@ nvimLsp.gopls.setup{
     on_attach = function(cli, bufnr)
         SetLSPKeyMap(bufnr)
     end,
+    capabilities = Capabilities,
 }
 
