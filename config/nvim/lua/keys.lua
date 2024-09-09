@@ -11,7 +11,7 @@ if rawget(package.loaded, "plugins-config.nvim-tree") then
     -- vim.keymap.set("n", "<A-b>", ":NvimTreeToggle<CR>", opt)         -- 光标移动到文件浏览器
     vim.keymap.set("n", "<A-f>", ":NvimTreeFindFile<CR>", opt)      -- 定位文件，光标移动到当前文件位置
     vim.keymap.set("i", "<A-p>", "<Esc>:NvimTreeFindFile<CR>", opt)
-    vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<Enter>", opt)     -- 刷新文件树
+    vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<CR>", opt)     -- 刷新文件树
 else
     vim.notify("没有开启 nvim-tree 不进行快捷键设置")
 end
@@ -20,11 +20,11 @@ end
 vim.keymap.set("i", "<C-s>", "<ESC>:w<CR>", opt)
 -- vim.keymap.set("i", "<C-q>", "<ESC>:wq<CR>", opt)
 vim.keymap.set("i", "<C-w>", "<ESC>:w<CR>:bd<CR>", opt)
-vim.keymap.set("i", "<A-Left>", "<ESC>:BufferLineCyclePrev<Enter>", opt)
-vim.keymap.set("i", "<A-Right>", "<ESC>:BufferLineCycleNext<Enter>", opt)
-vim.keymap.set("n", "<C-s>", ":w<Enter>", opt)
--- vim.keymap.set("n", "<C-q>", ":q<Enter>", opt)
-vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<Enter>", opt)
+vim.keymap.set("i", "<A-Left>", "<ESC>:BufferLineCyclePrev<CR>", opt)
+vim.keymap.set("i", "<A-Right>", "<ESC>:BufferLineCycleNext<CR>", opt)
+vim.keymap.set("n", "<C-s>", ":w<CR>", opt)
+-- vim.keymap.set("n", "<C-q>", ":q<CR>", opt)
+vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", opt)
 
 
 
