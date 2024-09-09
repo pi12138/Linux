@@ -4,6 +4,34 @@ if not status then
 	return
 end
 
+-- copy from telescope.builtin.__files.lua
+-- 修改部分逻辑, 目的是为了优先使用 fd/fdfind
+local function FindCommand()
+  if 1 == vim.fn.executable "fd" then
+    return { "fd", "--type", "f", "--color", "never" }
+  elseif 1 == vim.fn.executable "fdfind" then
+    return { "fdfind", "--type", "f", "--color", "never" }
+  elseif 1 == vim.fn.executable "rg" then
+    return { "rg", "--files", "--color", "never" }
+  elseif 1 == vim.fn.executable "find" and vim.fn.has "win32" == 0 then
+    return { "find", ".", "-type", "f" }
+  elseif 1 == vim.fn.executable "where" then
+    return { "where", "/r", ".", "*" }
+  end
+  return nil
+end
+
+local find_command = FindCommand()
+if not find_command then
+  vim.notify("builtin.find_files", {
+    msg = "You need to install either find, fd, or rg",
+    level = "ERROR",
+  })
+  return
+else
+  vim.notify(string.format("find_files use [%s]", table.concat(find_command, " ")))
+end
+
 tele.setup{
   defaults = {
     -- Default configuration for telescope goes here:
@@ -25,6 +53,9 @@ tele.setup{
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    find_files = {
+      find_command = find_command,
+    }
   },
   extensions = {
     -- Your extension configuration goes here:
