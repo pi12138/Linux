@@ -26,6 +26,9 @@ vim.keymap.set("n", "<C-s>", ":w<CR>", opt)
 -- vim.keymap.set("n", "<C-q>", ":q<CR>", opt)
 vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", opt)
 
+-- 快速移动光标
+vim.keymap.set('n', "<C-Up>", "5k", opt)
+vim.keymap.set('n', "<C-Down>", "5j", opt)
 
 
 -- 搜索文件
