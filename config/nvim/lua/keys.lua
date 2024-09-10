@@ -96,6 +96,7 @@ if  not status  then
 end
 
 wk.add({
+    {"<leader>qa", "<cmd>qa<cr>", desc="Quit ALL"},
 })
 
 
