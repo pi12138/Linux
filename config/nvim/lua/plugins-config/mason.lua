@@ -25,6 +25,7 @@ masonLsp.setup({
     ensure_installed = {
         "gopls",
         "lua_ls",
+        "pyright",
     },
 })
 
@@ -109,4 +110,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
     vim.lsp.buf.format({async = false})
   end
+})
+
+-- python language server 
+nvimLsp.pyright.setup({
+    on_attach = function (cli, bufnr)
+        SetLSPKeyMap(bufnr)
+    end,
+    capabilities = Capabilities,
 })
