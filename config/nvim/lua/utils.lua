@@ -18,3 +18,19 @@ function PrintTable(t, indent)
         end
     end
 end
+
+function MergeTables(tbl1, tbl2)
+    local merged = {}
+
+    -- 复制第一个表
+    for k, v in pairs(tbl1) do
+        merged[k] = v
+    end
+
+    -- 复制第二个表
+    for k, v in pairs(tbl2) do
+        merged[k] = v
+    end
+
+    return merged
+end

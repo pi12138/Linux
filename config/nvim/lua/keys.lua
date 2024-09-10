@@ -2,7 +2,7 @@
 
 -- keybindings
 local opt = { noremap = true, silent = true }
-vim.keymap.set("n", "<Leader>v", "<C-w>v", opt)
+vim.keymap.set("n", "<Leader>v", "<C-w>v", MergeTables(opt, {desc = "向右分割"}))
 
 
 if rawget(package.loaded, "plugins-config.nvim-tree") then
@@ -39,6 +39,14 @@ if  rawget(package.loaded, "plugins-config.telescope") then
     vim.keymap.set('v', '<C-f>', teleBuilt.grep_string, opt)
     -- open file_browser with the path of the current buffer
     vim.keymap.set("n", "<C-b>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+
+    -- lsp picker
+    local mode = "n"
+    vim.keymap.set(mode, "<leader><F12>", teleBuilt.lsp_definitions, { desc = "转到定义[f12]"})
+    vim.keymap.set(mode, '<leader><F24>', teleBuilt.lsp_references, {desc = "查看引用[shift+f12]"}) -- <F24> shift + F12         查看引用
+    -- vim.keymap.set(mode, '<leader><F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
+    vim.keymap.set(mode, '<leader><F36>', teleBuilt.lsp_implementations, {desc = "转到实现[ctrl+f12]"}) -- <F36> ctrl + F12      转到实现
+    vim.keymap.set(mode, '<Leader><F11>', teleBuilt.diagnostics, {desc="查看诊断信息[f11]"})
     -- 全局搜索, 需要 ripgrep  支持
     if BinaryExists('rg') then
         vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
@@ -75,7 +83,7 @@ function SetLSPKeyMap(bufnr)
     vim.keymap.set(mode, '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
     vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
     vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts)
-    vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, opts)
+    vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, MergeTables(opts, {desc = "Code Action"}))
     vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
 
     mode = 'i'
