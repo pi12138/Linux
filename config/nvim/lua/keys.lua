@@ -46,7 +46,9 @@ if  rawget(package.loaded, "plugins-config.telescope") then
     vim.keymap.set(mode, '<leader><F24>', teleBuilt.lsp_references, {desc = "查看引用[shift+f12]"}) -- <F24> shift + F12         查看引用
     -- vim.keymap.set(mode, '<leader><F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
     vim.keymap.set(mode, '<leader><F36>', teleBuilt.lsp_implementations, {desc = "转到实现[ctrl+f12]"}) -- <F36> ctrl + F12      转到实现
-    vim.keymap.set(mode, '<Leader><F11>', teleBuilt.diagnostics, {desc="查看诊断信息[f11]"})
+    vim.keymap.set(mode, '<leader><F11>', function() teleBuilt.diagnostics({bufnr=0}) end, {desc="查看当前buffer诊断信息[f11]"})
+    vim.keymap.set(mode, '<leader><F23>', teleBuilt.diagnostics, {desc="查看当前buffer诊断信息[shift+f11]"})
+
     -- 全局搜索, 需要 ripgrep  支持
     if BinaryExists('rg') then
         vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
@@ -76,25 +78,44 @@ vim.keymap.set("v", "<Leader>y", '"+y', { noremap = true, silent = true , desc =
 -- for lsp keymap
 function SetLSPKeyMap(bufnr)
     local opts = { buffer = bufnr }
-    local mode = 'n'
-    vim.keymap.set(mode, '<F12>', vim.lsp.buf.definition, opts) -- F12                       转到定义
-    vim.keymap.set(mode, '<F24>', vim.lsp.buf.references, opts) -- <F24> shift + F12         查看引用
-    vim.keymap.set(mode, '<F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
-    vim.keymap.set(mode, '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
-    vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
-    vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts)
-    vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, MergeTables(opts, {desc = "Code Action"}))
-    vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
 
-    mode = 'i'
-    vim.keymap.set(mode, '<F12>', vim.lsp.buf.definition, opts) -- F12                       转到定义
-    vim.keymap.set(mode, '<F24>', vim.lsp.buf.references, opts) -- <F24> shift + F12         查看引用
-    vim.keymap.set(mode, '<F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
-    vim.keymap.set(mode, '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
-    vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
-    vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts)
---     vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, opts)
-    vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
+    if rawget(package.loaded, "lspsaga") then
+        local mode = 'n'
+        vim.keymap.set(mode, '<Leader>c', "<cmd>Lspsaga code_action<cr>", MergeTables(opts, {desc = "Code Action(lspsaga)"}))
+        vim.keymap.set(mode, '<F12>', "<cmd>Lspsaga goto_definition<cr>", MergeTables(opts, {desc = "转到定义(lspsaga)"}))
+        vim.keymap.set(mode, '<F60>', "<cmd>Lspsaga hover_doc<cr>", MergeTables(opts, {desc = "快速查看定义,以弹窗形式(lspsaga)"}))
+        vim.keymap.set(mode, '<F24>', "<cmd>Lspsaga finder ref<cr>", MergeTables(opts, {desc = "查看引用(lspsaga)"}))
+        vim.keymap.set(mode, '<F36>', "<cmd>Lspsaga finder imp<cr>", MergeTables(opts, {desc = "转到实现(lspsaga)"}))
+        vim.keymap.set(mode, '<F11>', "<cmd>Lspsaga show_buf_diagnostics<cr>", MergeTables(opts, {desc = "转到实现(lspsaga)"}))
+        vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts) 
+        vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
+
+        mode = 'i'
+        vim.keymap.set(mode, '<Leader>c', "<cmd>Lspsaga code_action<cr>", MergeTables(opts, {desc = "Code Action(lspsaga)"}))
+        vim.keymap.set(mode, '<F12>', "<cmd>Lspsaga goto_definition<cr>", MergeTables(opts, {desc = "转到定义(lspsaga)"}))
+        vim.keymap.set(mode, '<F60>', "<cmd>Lspsaga hover_doc<cr>", MergeTables(opts, {desc = "快速查看定义,以弹窗形式(lspsaga)"}))
+        vim.keymap.set(mode, '<F24>', "<cmd>Lspsaga finder ref<cr>", MergeTables(opts, {desc = "查看引用(lspsaga)"}))
+        vim.keymap.set(mode, '<F36>', "<cmd>Lspsaga finder imp<cr>", MergeTables(opts, {desc = "转到实现(lspsaga)"}))
+        vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts) 
+    else
+        local mode = 'n'
+        vim.keymap.set(mode, '<F12>', vim.lsp.buf.definition, opts) -- F12                       转到定义
+        vim.keymap.set(mode, '<F24>', vim.lsp.buf.references, opts) -- <F24> shift + F12         查看引用
+        vim.keymap.set(mode, '<F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
+        vim.keymap.set(mode, '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
+        vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
+        vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts) 
+        vim.keymap.set(mode, '<A-F>', vim.lsp.buf.format, opts)
+        vim.keymap.set(mode, '<Leader>c', vim.lsp.buf.code_action, MergeTables(opts, {desc = "Code Action"}))
+        mode = 'i'
+        vim.keymap.set(mode, '<F12>', vim.lsp.buf.definition, opts) -- F12                       转到定义
+        vim.keymap.set(mode, '<F24>', vim.lsp.buf.references, opts) -- <F24> shift + F12         查看引用
+        vim.keymap.set(mode, '<F60>', vim.lsp.buf.hover, opts) -- <F60> alt + F12                快速查看定义,以弹窗形式
+        vim.keymap.set(mode, '<F36>', vim.lsp.buf.implementation, opts) -- <F36> ctrl + F12      转到实现
+        vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
+        vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts)
+    end
+
 end
 
 -- which-key 管理快捷键
