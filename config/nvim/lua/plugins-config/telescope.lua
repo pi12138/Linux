@@ -1,6 +1,6 @@
 local status, tele = pcall(require, "telescope")
 if not status then
-	vim.notify("没有找到 telescope")
+	DebugNotify("没有找到 telescope")
 	return
 end
 
@@ -23,10 +23,10 @@ end
 
 local find_command = FindCommand()
 if not find_command then
-  vim.notify("builtin.find_files You need to install either find, fd, or rg")
+  DebugNotify("builtin.find_files You need to install either find, fd, or rg")
   return
 else
-  vim.notify(string.format("find_files use [%s]", table.concat(find_command, " ")))
+  DebugNotify(string.format("find_files use [%s]", table.concat(find_command, " ")))
 end
 
 local teleActions = require("telescope.actions")

@@ -1,8 +1,3 @@
--- vim.o.tabstop = 4
--- vim.bo.tabstop = 4
--- vim.o.softtabstop = 4
--- vim.o.shiftround = true
---  vim.o.expandtab = true
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
@@ -89,3 +84,7 @@ vim.wo.foldminlines =  100
 
 
 vim.opt.termguicolors = true
+
+
+-- 启动时不显示 messages 
+vim.opt.shortmess:append("I")

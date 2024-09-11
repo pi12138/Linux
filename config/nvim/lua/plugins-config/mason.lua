@@ -1,6 +1,6 @@
 local status, mason = pcall(require, "mason")
 if not status then
-	vim.notify("没有找到 mason")
+	DebugNotify("没有找到 mason")
 	return
 end
 
@@ -16,7 +16,7 @@ mason.setup({
 
 local status, masonLsp = pcall(require, "mason-lspconfig")
 if not status then
-    vim.notify("没有找到 mason-lspconfig")
+    DebugNotify("没有找到 mason-lspconfig")
     return
 end
 
@@ -31,7 +31,7 @@ masonLsp.setup({
 
 local status, nvimLsp = pcall(require, "lspconfig")
 if not status then
-    vim.notify("没有找到 lspconfig" )
+    DebugNotify("没有找到 lspconfig" )
     return
 end
 
@@ -66,7 +66,7 @@ nvimLsp.lua_ls.setup {
         -- library = vim.api.nvim_get_runtime_file("", true)
       }
     })
-    vim.notify("lua_ls init success.")
+    DebugNotify("lua_ls init success.")
   end,
   settings = {
     Lua = {

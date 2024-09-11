@@ -13,7 +13,7 @@ if rawget(package.loaded, "plugins-config.nvim-tree") then
     vim.keymap.set("i", "<A-p>", "<Esc>:NvimTreeFindFile<CR>", opt)
     vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<CR>", opt)     -- 刷新文件树
 else
-    vim.notify("没有开启 nvim-tree 不进行快捷键设置")
+    DebugNotify("没有开启 nvim-tree 不进行快捷键设置")
 end
 
 -- 文件操作相关
@@ -53,10 +53,10 @@ if  rawget(package.loaded, "plugins-config.telescope") then
     if BinaryExists('rg') then
         vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
     else
-        vim.notify("rg  不存在,不设置快捷键  Ctrl +  f")
+        DebugNotify("rg  不存在,不设置快捷键  Ctrl +  f")
     end
 else
-    vim.notify("没有开启 telescope 不进行设置")
+    DebugNotify("没有开启 telescope 不进行设置")
 end
 
 
@@ -121,7 +121,7 @@ end
 -- which-key 管理快捷键
 local status, wk = pcall(require, "which-key")
 if  not status  then
-    vim.notify("which-key not install.")
+    DebugNotify("which-key not install.")
 end
 
 wk.add({

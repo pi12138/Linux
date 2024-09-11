@@ -14,12 +14,11 @@
 -- source configfile 重新加载配置文件
 --]]
 
-
+require("base")
+require("utils")
 require("lazy-vim")
 require("plugins-config.telescope")
 require("plugins-config.folke")
-require("base")
-require("utils")
 require("keys")
 -- require("plugins-config.nvim-tree")
 require("plugins-config.nvim-treesitter")

@@ -34,3 +34,11 @@ function MergeTables(tbl1, tbl2)
 
     return merged
 end
+
+local Debug = false
+
+function DebugNotify(msg, level, opts)
+    if Debug then
+        vim.notify(msg, level, opts)
+    end
+end
