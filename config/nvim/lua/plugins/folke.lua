@@ -16,7 +16,7 @@ return {
     "folke/neodev.nvim", 
     { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}},
     -- lazy.nvim
-    {
+    --[[ {
         "folke/noice.nvim",
         event = "VeryLazy",
         opts = {
@@ -30,7 +30,7 @@ return {
             --   If not available, we use `mini` as the fallback
             "rcarriga/nvim-notify",
         }
-    },
+    }, ]]
     { 'echasnovski/mini.icons', version = false },  --  optional for which-key
 --     {
 --         "folke/trouble.nvim",

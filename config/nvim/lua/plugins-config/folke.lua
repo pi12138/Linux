@@ -1,4 +1,4 @@
-local status, noice = pcall(require, "noice")
+--[[ local status, noice = pcall(require, "noice")
 if not status then
 	vim.notify("没有找到 noice")
 	return
@@ -25,4 +25,4 @@ noice.setup({
 })
 
 
-require("noice.source.notify").enable()
+require("noice.source.notify").enable() ]]
