@@ -25,6 +25,7 @@ vim.keymap.set("i", "<A-Right>", "<ESC>:BufferLineCycleNext<CR>", opt)
 vim.keymap.set("n", "<C-s>", ":w<CR>", opt)
 -- vim.keymap.set("n", "<C-q>", ":q<CR>", opt)
 vim.keymap.set("n", "<A-Left>", ":BufferLineCyclePrev<CR>", opt)
+vim.keymap.set("n", "<A-Right>", ":BufferLineCycleNext<CR>", opt)
 
 -- 快速移动光标
 vim.keymap.set('n', "<C-Up>", "5k", opt)

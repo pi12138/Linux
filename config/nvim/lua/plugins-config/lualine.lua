@@ -74,8 +74,10 @@ local conditions = {
 local config = {
   options = {
     -- Disable sections and component separators
-    component_separators = '',
-    section_separators = '',
+    -- component_separators = '',
+    -- section_separators = '',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     theme = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
@@ -115,14 +117,14 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
-ins_left {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue }, -- Sets highlighting of component
-  padding = { left = 0, right = 1 }, -- We don't need space before this
-}
-
+-- ins_left {
+--   function()
+--     return '▊'
+--   end,
+--   color = { fg = colors.blue }, -- Sets highlighting of component
+--   padding = { left = 0, right = 1 }, -- We don't need space before this
+-- }
+--
 ins_left {
   -- mode component
   -- function()
@@ -159,11 +161,11 @@ ins_left {
 }
 
 
-ins_left {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
-}
+-- ins_left {
+--   -- filesize component
+--   'filesize',
+--   cond = conditions.buffer_not_empty,
+-- }
 
 ins_left {
   'filename',
@@ -171,30 +173,48 @@ ins_left {
   color = { fg = colors.magenta, gui = 'bold' },
 }
 
-ins_left { 'location' }
-
-ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+ins_left {
+  'branch',
+  icon = '',
+  color = { fg = colors.violet, gui = 'bold' },
+}
 
 ins_left {
+  'diff',
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+  cond = conditions.hide_in_width,
+}
+
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+-- ins_left {
+--   function()
+--     return '%='
+--   end,
+-- }
+
+
+-- Add components to right sections
+ins_right {
   'diagnostics',
   sources = { 'nvim_diagnostic' },
-  symbols = { error = ' ', warn = ' ', info = ' ' },
+  sections = { 'error', 'warn', 'info'},
+  symbols = { error = ' ', warn = ' ', info = ' '},
   diagnostics_color = {
     error = { fg = colors.red },
     warn = { fg = colors.yellow },
     info = { fg = colors.cyan },
   },
+  always_visible = true,
 }
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left {
-  function()
-    return '%='
-  end,
-}
-
-ins_left {
+ins_right {
   -- Lsp server name .
   function()
     local msg = 'No Active Lsp'
@@ -215,7 +235,12 @@ ins_left {
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
--- Add components to right sections
+
+ins_right { 'location' }
+
+ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+
+
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
@@ -230,31 +255,14 @@ ins_right {
   color = { fg = colors.green, gui = 'bold' },
 }
 
-ins_right {
-  'branch',
-  icon = '',
-  color = { fg = colors.violet, gui = 'bold' },
-}
 
-ins_right {
-  'diff',
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-}
-
-ins_right {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 1 },
-}
+-- ins_right {
+--   function()
+--     return '▊'
+--   end,
+--   color = { fg = colors.blue },
+--   padding = { left = 1 },
+-- }
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
