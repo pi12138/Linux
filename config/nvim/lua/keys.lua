@@ -127,6 +127,7 @@ end
 
 wk.add({
     {"<leader>qa", "<cmd>qa<cr>", desc="Quit ALL"},
+    {"<leader>qb", "<cmd>bd<cr>", desc="Close Current Buffer"},
 })
 
 

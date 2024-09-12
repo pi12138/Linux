@@ -16,6 +16,7 @@
 
 require("base")
 require("utils")
+require("autocmd")
 require("lazy-vim")
 require("plugins-config.telescope")
 require("plugins-config.folke")
