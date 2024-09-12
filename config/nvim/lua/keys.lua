@@ -116,7 +116,7 @@ function SetLSPKeyMap(bufnr)
         vim.keymap.set(mode, '<F48>', vim.lsp.buf.declaration, opts) -- <F48> ctrl + shift + F12 转到盛名
         vim.keymap.set(mode, '<F2>', vim.lsp.buf.rename, opts)
     end
-
+    vim.keymap.del('n', 'K', opts)
 end
 
 -- which-key 管理快捷键
