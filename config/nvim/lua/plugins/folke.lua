@@ -1,7 +1,8 @@
 return {
     {
 	    "folke/which-key.nvim",
-	    tag = "v3.13.2",
+	    event = "VeryLazy",
+        tag = "v3.13.2",
         -- keys = {
         --     {
         --         "<leader>?",
@@ -11,6 +12,18 @@ return {
         --         desc = "Buffer Local Keymaps (which-key)"
         --     }
         -- }
+        config = function ()
+            require("which-key").setup({
+                preset = "modern",
+                icons = {
+                    keys = {
+                        C = "C-",
+                        M = "A-",
+                        S = "S-",
+                    }
+                },
+            })
+        end,
     },
     { "folke/neoconf.nvim", cmd = "Neoconf" },
     "folke/neodev.nvim", 

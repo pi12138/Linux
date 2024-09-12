@@ -39,7 +39,7 @@ if  rawget(package.loaded, "plugins-config.telescope") then
     vim.keymap.set("n", "<C-p>", teleBuilt.find_files, {})
     vim.keymap.set('v', '<C-f>', teleBuilt.grep_string, opt)
     -- open file_browser with the path of the current buffer
-    vim.keymap.set("n", "<C-b>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+    vim.keymap.set("n", "<C-b>", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", MergeTables(opt, {desc="file browser"}))
 
     -- lsp picker
     local mode = "n"
@@ -126,8 +126,14 @@ if  not status  then
 end
 
 wk.add({
+    -- leader
     {"<leader>qa", "<cmd>qa<cr>", desc="Quit ALL"},
     {"<leader>qb", "<cmd>bd<cr>", desc="Close Current Buffer"},
+    {"<leader>?", function ()
+        wk.show()
+    end, desc="展示所有的快捷键"},
+    -- Ctrl
+    {"<C-j>", "<esc>o", desc="Into next line", mode='i'},
 })
 
 
