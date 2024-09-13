@@ -52,7 +52,8 @@ if  rawget(package.loaded, "plugins-config.telescope") then
 
     -- 全局搜索, 需要 ripgrep  支持
     if BinaryExists('rg') then
-        vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
+        -- vim.keymap.set("n", "<C-f>", teleBuilt.live_grep, opt)
+        vim.keymap.set("n", "<C-f>", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opt)
     else
         DebugNotify("rg  不存在,不设置快捷键  Ctrl +  f")
     end
@@ -127,8 +128,9 @@ end
 
 wk.add({
     -- leader
-    {"<leader>qa", "<cmd>qa<cr>", desc="Quit ALL"},
-    {"<leader>qb", "<cmd>bd<cr>", desc="Close Current Buffer"},
+    {"<leader>qa", "<cmd>qa<cr>", desc="退出"},
+    {"<leader>Q", "<cmd>qa<cr>", desc="退出"},
+    {"<leader>qb", "<cmd>bd<cr>", desc="关闭当前 buffer"},
     {"<leader>?", function ()
         wk.show()
     end, desc="展示所有的快捷键"},

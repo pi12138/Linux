@@ -8,9 +8,9 @@ end
 -- 修改部分逻辑, 目的是为了优先使用 fd/fdfind
 local function FindCommand()
   if 1 == vim.fn.executable "fd" then
-    return { "fd", "--type", "f", "--color", "never" }
+    return { "fd", "--type", "f", "--color", "never", "--no-ignore" }
   elseif 1 == vim.fn.executable "fdfind" then
-    return { "fdfind", "--type", "f", "--color", "never" }
+    return { "fdfind", "--type", "f", "--color", "never", "--no-ignore" }
   elseif 1 == vim.fn.executable "rg" then
     return { "rg", "--files", "--color", "never" }
   elseif 1 == vim.fn.executable "find" and vim.fn.has "win32" == 0 then
@@ -75,3 +75,4 @@ tele.setup{
 
 tele.load_extension('fzf')
 tele.load_extension('file_browser')
+tele.load_extension('live_grep_args')
