@@ -134,6 +134,7 @@ wk.add({
     {"<leader>?", function ()
         wk.show()
     end, desc="展示所有的快捷键"},
+
     -- Ctrl
     {"<C-j>", "<esc>o", desc="Into next line", mode='i'},
     {"<C-c>", "<esc>yya", desc="Copy", mode="i"},
@@ -141,4 +142,16 @@ wk.add({
     {"<C-v>", "<esc>pa", desc="Paste", mode="i"},
 })
 
-
+local gsstatus, gitsigns = pcall(require, "gitsigns")
+if not gsstatus then
+    DebugNotify("gitsigns not install.")
+else
+    wk.add({
+        {"<leader>gr", function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, desc="丢弃更改", mode="v"},
+        {"<leader>gp", gitsigns.preview_hunk_inline, desc="预览当前块更改"},
+        {"<leader>gi", function ()
+            gitsigns.blame_line{full=true}
+        end, desc = "显示当前行的修改信息"},
+        {"<leader>gd", gitsigns.diffthis, desc="显示和上个版本的diff"},
+    })
+end
