@@ -136,6 +136,9 @@ wk.add({
     end, desc="展示所有的快捷键"},
     -- Ctrl
     {"<C-j>", "<esc>o", desc="Into next line", mode='i'},
+    {"<C-c>", "<esc>yya", desc="Copy", mode="i"},
+    {"<C-x>", "<esc>dda", desc="Cut", mode="i"},
+    {"<C-v>", "<esc>pa", desc="Paste", mode="i"},
 })
 
 
