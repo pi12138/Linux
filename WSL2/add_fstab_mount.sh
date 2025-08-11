@@ -10,9 +10,15 @@
 ## sudo ./add_fstab_mount.sh C:/Users/username
 
 
+# 检查是否以 root 权限运行
+if [ "$(id -u)" -ne 0 ]; then
+  echo "错误：请使用 root 用户或通过 sudo 运行此脚本。"
+  exit 1
+fi
+
 if [ $# -ne 1 ]; then
-  echo "Usage: sudo $0 <WindowsUserProfilePath>"
-  echo "Example: sudo $0 C:/Users/username"
+  echo "用法: $0 <WindowsUserProfilePath>"
+  echo "示例: $0 C:/Users/miljenko"
   exit 1
 fi
 
