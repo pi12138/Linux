@@ -18,7 +18,7 @@ fi
 
 if [ $# -ne 1 ]; then
   echo "用法: $0 <WindowsUserProfilePath>"
-  echo "示例: $0 C:/Users/miljenko"
+  echo "示例: $0 C:/Users/username"
   exit 1
 fi
 
