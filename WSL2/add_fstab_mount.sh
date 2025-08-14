@@ -25,11 +25,11 @@ fi
 WIN_USER_PATH="$1"
 
 # 两个要挂载的 Windows 路径
-SRC1="$WIN_USER_PATH/.vscode/extensions"
+SRC1="$WIN_USER_PATH/.vscode"
 SRC2="$WIN_USER_PATH/vscode-remote-wsl"
 
 # WSL 中挂载点路径，假设挂载到 /mnt/c/ 下对应目录
-DST1="/mnt/c/${WIN_USER_PATH#C:/}/.vscode/extensions"
+DST1="/mnt/c/${WIN_USER_PATH#C:/}/.vscode"
 DST2="/mnt/c/${WIN_USER_PATH#C:/}/vscode-remote-wsl"
 
 # 替换路径中的反斜杠（如果有）
