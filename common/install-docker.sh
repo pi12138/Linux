@@ -175,7 +175,6 @@ install_dependencies() {
                 curl \
                 gnupg \
                 lsb-release \
-                software-properties-common \
                 apt-transport-https
             ;;
         centos|rhel|rocky|almalinux)
