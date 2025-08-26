@@ -47,6 +47,12 @@ DEFAULT_EXCLUDES=(
   "Downloads"
   ".local/share/Trash"
   "__BACKUP_FILE__"  # 占位符，稍后替换成实际文件名
+  ".codeium"
+  ".pyenv/versions"
+  ".go"
+  ".vscode-remote-containers"
+  ".vscode-server"
+  ".nvm/versions"
 )
 
 EXCLUDE_LIST=()
