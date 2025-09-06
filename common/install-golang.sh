@@ -25,7 +25,7 @@ if [ -d "${INSTALL_DIR}/go" ]; then
     TIMESTAMP=$(date +%Y%m%d%H%M%S)
     BACKUP_DIR="${INSTALL_DIR}/go.bak.${TIMESTAMP}"
     echo "检测到已有 Go 版本，备份到 ${BACKUP_DIR} ..."
-    sudo mv "${INSTALL_DIR}/go" "${BACKUP_DIR}"
+    mv "${INSTALL_DIR}/go" "${BACKUP_DIR}"
 fi
 
 # 下载 Go 安装包（如果不存在）
@@ -38,14 +38,14 @@ fi
 
 # 解压到安装目录
 echo "解压安装包到 ${INSTALL_DIR} ..."
-sudo tar -C "${INSTALL_DIR}" -xzf "${TMP_TAR_PATH}"
+tar -C "${INSTALL_DIR}" -xzf "${TMP_TAR_PATH}"
 
 # 配置环境变量脚本路径
 GO_PROFILE="/etc/profile.d/go.sh"
 
 # 写入环境变量配置（覆盖之前配置）
 echo "写入环境变量配置到 ${GO_PROFILE} ..."
-sudo tee "${GO_PROFILE}" > /dev/null << EOF
+tee "${GO_PROFILE}" > /dev/null << EOF
 # Go 语言环境变量
 export PATH=\$PATH:/usr/local/go/bin
 EOF
