@@ -60,12 +60,19 @@ command_exists() {
 
 # 安装依赖包
 install_dependencies() {
+    if [[ $EUID -ne 0 ]]; then
+        log_error "安装依赖包需要 root 权限"
+        log_info "请使用以下命令以 sudo 权限重新运行脚本:"
+        echo "  sudo $0 --install-deps"
+        exit 1
+    fi
+    
     log_info "安装 pyenv 依赖包..."
     
     case $OS in
         "debian")
-            sudo apt update
-            sudo apt install -y make build-essential libssl-dev zlib1g-dev \
+            apt update
+            apt install -y make build-essential libssl-dev zlib1g-dev \
                 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
                 libncurses5-dev libncursesw5-dev xz-utils tk-dev \
                 libffi-dev liblzma-dev python3-openssl git
@@ -80,8 +87,8 @@ install_dependencies() {
                 exit 1
             fi
             
-            sudo $PKG_MANAGER groupinstall -y "Development Tools"
-            sudo $PKG_MANAGER install -y gcc openssl-devel bzip2-devel \
+            $PKG_MANAGER groupinstall -y "Development Tools"
+            $PKG_MANAGER install -y gcc openssl-devel bzip2-devel \
                 libffi-devel readline-devel sqlite-devel xz-devel \
                 zlib-devel findutils git curl wget
             ;;
@@ -288,21 +295,69 @@ show_usage() {
     log_warning "请运行 'source ~/.bashrc' 或重新打开终端以使用 pyenv"
 }
 
+# 显示帮助信息
+show_help() {
+    echo "用法: $0 [选项]"
+    echo
+    echo "选项:"
+    echo "  --install-deps    安装系统依赖包 (需要 sudo 权限)"
+    echo "  --skip-deps       跳过依赖包安装"
+    echo "  -h, --help        显示此帮助信息"
+    echo
+    echo "示例:"
+    echo "  $0                    # 正常安装 pyenv (会检查依赖)"
+    echo "  sudo $0 --install-deps    # 仅安装依赖包"
+    echo "  $0 --skip-deps        # 跳过依赖安装直接安装 pyenv"
+}
+
 # 主函数
 main() {
+    # 解析命令行参数
+    INSTALL_DEPS=false
+    SKIP_DEPS=false
+    
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --install-deps)
+                INSTALL_DEPS=true
+                shift
+                ;;
+            --skip-deps)
+                SKIP_DEPS=true
+                shift
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                log_error "未知参数: $1"
+                show_help
+                exit 1
+                ;;
+        esac
+    done
+    
     echo "=================================="
     echo "     Pyenv 自动安装脚本"
     echo "=================================="
     echo
     
-    # 检查是否为 root 用户
-    if [[ $EUID -eq 0 ]]; then
-        log_error "请不要使用 root 用户运行此脚本"
-        exit 1
-    fi
-    
     # 检测操作系统
     detect_os
+    
+    # 如果只是安装依赖
+    if [[ $INSTALL_DEPS == true ]]; then
+        install_dependencies
+        log_success "依赖包安装完成！现在可以运行 '$0 --skip-deps' 安装 pyenv"
+        exit 0
+    fi
+    
+    # 检查是否为 root 用户 (安装 pyenv 时不能是 root)
+    if [[ $EUID -eq 0 && $INSTALL_DEPS == false ]]; then
+        log_error "请不要使用 root 用户安装 pyenv"
+        exit 1
+    fi
     
     # 检查 Git 是否已安装
     if ! command_exists git; then
@@ -310,8 +365,13 @@ main() {
         exit 1
     fi
     
-    # 安装依赖
-    install_dependencies
+    # 安装依赖 (除非跳过)
+    if [[ $SKIP_DEPS == false ]]; then
+        log_info "需要安装系统依赖包..."
+        log_info "请先运行: sudo $0 --install-deps"
+        log_info "然后再运行: $0 --skip-deps"
+        exit 1
+    fi
     
     # 安装 pyenv
     install_pyenv
