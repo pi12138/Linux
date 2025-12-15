@@ -78,19 +78,25 @@ install_dependencies() {
                 libffi-dev liblzma-dev python3-openssl git
             ;;
         "redhat")
-            if command_exists dnf; then
-                PKG_MANAGER="dnf"
+	    if command_exists dnf5; then
+                dnf5 group install -y "rpm-development-tools"
+                dnf5 install -y gcc openssl-devel bzip2-devel \
+                    libffi-devel readline-devel sqlite-devel xz-devel \
+                    zlib-devel findutils git curl wget
+            elif command_exists dnf; then
+                dnf groupinstall -y "Development Tools"
+                dnf install -y gcc openssl-devel bzip2-devel \
+                    libffi-devel readline-devel sqlite-devel xz-devel \
+                    zlib-devel findutils git curl wget
             elif command_exists yum; then
-                PKG_MANAGER="yum"
+                yum groupinstall -y "Development Tools"
+                yum install -y gcc openssl-devel bzip2-devel \
+                    libffi-devel readline-devel sqlite-devel xz-devel \
+                    zlib-devel findutils git curl wget
             else
                 log_error "未找到包管理器 (dnf 或 yum)"
                 exit 1
             fi
-            
-            $PKG_MANAGER groupinstall -y "Development Tools"
-            $PKG_MANAGER install -y gcc openssl-devel bzip2-devel \
-                libffi-devel readline-devel sqlite-devel xz-devel \
-                zlib-devel findutils git curl wget
             ;;
         "macos")
             if ! command_exists brew; then
