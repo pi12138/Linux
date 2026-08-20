@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Select the boot target dynamically.
+# Valid values: auto, graphical, text
+MODE=auto
+
+# systemd invokes generators with:
+#   $1 = normal output directory
+#   $2 = early output directory
+#   $3 = late output directory
+[ "$#" -eq 3 ] || exit 0
+
+early_dir=$2
+
+# Respect an explicit one-boot target selected from the kernel command line.
+for argument in $(cat /proc/cmdline); do
+    case "$argument" in
+        systemd.unit=*|rd.systemd.unit=*)
+            exit 0
+            ;;
+    esac
+done
+
+case "$MODE" in
+    auto)
+        # Treat detection failure as physical hardware (graphical fallback).
+        if virtualization=$(
+            /usr/bin/systemd-detect-virt --vm 2>/dev/null
+        ); then
+            :
+        else
+            virtualization=none
+        fi
+
+        if [ "$virtualization" = "vmware" ]; then
+            target=multi-user.target
+        else
+            target=graphical.target
+        fi
+        ;;
+
+    graphical)
+        virtualization=manual
+        target=graphical.target
+        ;;
+
+    text)
+        virtualization=manual
+        target=multi-user.target
+        ;;
+
+    *)
+        virtualization=invalid-mode
+        target=graphical.target
+        ;;
+esac
+
+mkdir -p "$early_dir"
+
+ln -sfn \
+    "/usr/lib/systemd/system/$target" \
+    "$early_dir/default.target"
+
+printf 'auto-boot-mode: virtualization=%s target=%s\n' \
+    "$virtualization" "$target" >&2
+
+exit 0
